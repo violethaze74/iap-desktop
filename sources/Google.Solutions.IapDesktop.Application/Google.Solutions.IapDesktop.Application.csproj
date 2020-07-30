@@ -89,6 +89,12 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ExceptionEventArgs.cs" />
+    <Compile Include="Controls\ProjectList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\ProjectList.Designer.cs">
+      <DependentUpon>ProjectList.cs</DependentUpon>
+    </Compile>
     <Compile Include="ObjectModel\BindingExtensions.cs" />
     <Compile Include="ObjectModel\Command.cs" />
     <Compile Include="ObjectModel\CommandContainer.cs" />
@@ -258,6 +264,9 @@
     <None Include="Services\Workflows\README.md" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\ProjectList.resx">
+      <DependentUpon>ProjectList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
