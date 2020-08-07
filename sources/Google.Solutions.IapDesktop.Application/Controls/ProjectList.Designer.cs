@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectList));
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.list = new Google.Solutions.IapDesktop.Application.Controls.ProjectsListView();
             this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.idColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // progressBar
@@ -50,16 +54,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.list.AutoResizeColumnsOnUpdate = false;
-            this.list.CheckBoxes = true;
             this.list.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumnHeader,
             this.idColumnHeader});
+            this.list.FullRowSelect = true;
             this.list.HideSelection = false;
-            this.list.Location = new System.Drawing.Point(0, 3);
+            this.list.Location = new System.Drawing.Point(0, 32);
             this.list.Name = "list";
             this.list.OwnerDraw = true;
             this.list.SelectedModelItem = null;
-            this.list.Size = new System.Drawing.Size(250, 200);
+            this.list.Size = new System.Drawing.Size(250, 165);
+            this.list.SmallImageList = this.imageList;
             this.list.TabIndex = 1;
             this.list.UseCompatibleStateImageBehavior = false;
             this.list.View = System.Windows.Forms.View.Details;
@@ -73,16 +78,38 @@
             // idColumnHeader
             // 
             this.idColumnHeader.Text = "ID";
+            this.idColumnHeader.Width = 142;
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchTextBox.Location = new System.Drawing.Point(0, 4);
+            this.searchTextBox.Multiline = true;
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(250, 24);
+            this.searchTextBox.TabIndex = 0;
+            this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyDown);
+            // 
+            // imageList
+            // 
+            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName(0, "Project_16.png");
             // 
             // ProjectList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.searchTextBox);
             this.Controls.Add(this.list);
             this.Controls.Add(this.progressBar);
             this.Name = "ProjectList";
             this.Size = new System.Drawing.Size(250, 200);
+            this.Load += new System.EventHandler(this.ProjectList_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -92,5 +119,7 @@
         private ProjectsListView list;
         private System.Windows.Forms.ColumnHeader nameColumnHeader;
         private System.Windows.Forms.ColumnHeader idColumnHeader;
+        private System.Windows.Forms.TextBox searchTextBox;
+        private System.Windows.Forms.ImageList imageList;
     }
 }
