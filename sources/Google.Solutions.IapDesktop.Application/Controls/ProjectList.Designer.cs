@@ -31,22 +31,41 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectList));
             this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
+            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.list = new Google.Solutions.IapDesktop.Application.Controls.ProjectsListView();
             this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.idColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.searchTextBox = new System.Windows.Forms.TextBox();
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
             this.SuspendLayout();
             // 
             // progressBar
             // 
             this.progressBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar.Location = new System.Drawing.Point(0, 0);
+            this.progressBar.Location = new System.Drawing.Point(0, 21);
+            this.progressBar.MarqueeAnimationSpeed = 50;
             this.progressBar.Name = "progressBar";
-            this.progressBar.Size = new System.Drawing.Size(250, 3);
+            this.progressBar.Size = new System.Drawing.Size(250, 5);
             this.progressBar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.progressBar.TabIndex = 0;
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.searchTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.searchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchTextBox.Location = new System.Drawing.Point(0, 0);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.Size = new System.Drawing.Size(250, 21);
+            this.searchTextBox.TabIndex = 0;
+            this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyDown);
+            // 
+            // imageList
+            // 
+            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
+            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList.Images.SetKeyName(0, "Project_16.png");
             // 
             // list
             // 
@@ -54,16 +73,17 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.list.AutoResizeColumnsOnUpdate = false;
+            this.list.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.list.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.nameColumnHeader,
             this.idColumnHeader});
             this.list.FullRowSelect = true;
             this.list.HideSelection = false;
-            this.list.Location = new System.Drawing.Point(0, 32);
+            this.list.Location = new System.Drawing.Point(0, 25);
             this.list.Name = "list";
             this.list.OwnerDraw = true;
             this.list.SelectedModelItem = null;
-            this.list.Size = new System.Drawing.Size(250, 165);
+            this.list.Size = new System.Drawing.Size(250, 175);
             this.list.SmallImageList = this.imageList;
             this.list.TabIndex = 1;
             this.list.UseCompatibleStateImageBehavior = false;
@@ -78,25 +98,7 @@
             // idColumnHeader
             // 
             this.idColumnHeader.Text = "ID";
-            this.idColumnHeader.Width = 142;
-            // 
-            // searchTextBox
-            // 
-            this.searchTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.searchTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.searchTextBox.Location = new System.Drawing.Point(0, 4);
-            this.searchTextBox.Multiline = true;
-            this.searchTextBox.Name = "searchTextBox";
-            this.searchTextBox.Size = new System.Drawing.Size(250, 24);
-            this.searchTextBox.TabIndex = 0;
-            this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyDown);
-            // 
-            // imageList
-            // 
-            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList.Images.SetKeyName(0, "Project_16.png");
+            this.idColumnHeader.Width = 144;
             // 
             // ProjectList
             // 

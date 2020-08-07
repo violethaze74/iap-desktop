@@ -54,6 +54,7 @@ namespace Google.Solutions.IapDesktop.Application.Controls
             set
             {
                 this.progressBar.Enabled = value;
+                this.progressBar.Visible = value;
                 this.LoadingChanged?.Invoke(this, EventArgs.Empty);
             }
         }
@@ -80,9 +81,20 @@ namespace Google.Solutions.IapDesktop.Application.Controls
 
         private void ProjectList_Load(object sender, EventArgs e)
         {
+            //
+            // Add Search button as overlay.
+            //
             var searchButton = new Button();
-            searchButton.Size = new Size(25, this.searchTextBox.ClientSize.Height + 2);
-            searchButton.Location = new Point(this.searchTextBox.ClientSize.Width - searchButton.Width, -1);
+            searchButton.Size = new Size(16, 16);//, this.searchTextBox.ClientSize.Height + 2);
+            searchButton.Location = new Point(this.searchTextBox.ClientSize.Width - searchButton.Width - 4, 2);
+            searchButton.Anchor = AnchorStyles.Right | AnchorStyles.Top;
+            searchButton.FlatStyle = FlatStyle.Flat;
+            searchButton.FlatAppearance.BorderSize = 0;
+            searchButton.FlatAppearance.MouseOverBackColor = searchButton.BackColor;
+            searchButton.BackColorChanged += (s, _) => {
+                searchButton.FlatAppearance.MouseOverBackColor = searchButton.BackColor;
+            };
+            searchButton.TabStop = false;
             searchButton.Image = Resources.Search_16;
             searchButton.Cursor = Cursors.Default;
             searchButton.Click += (s, a) => StartSearch();
