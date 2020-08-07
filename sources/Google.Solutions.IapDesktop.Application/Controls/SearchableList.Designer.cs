@@ -1,6 +1,6 @@
 ﻿namespace Google.Solutions.IapDesktop.Application.Controls
 {
-    partial class ProjectList
+    partial class SearchableList<TModelItem>
     {
         /// <summary> 
         /// Required designer variable.
@@ -29,13 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProjectList));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchableList<TModelItem>));
             this.progressBar = new System.Windows.Forms.ProgressBar();
             this.searchTextBox = new System.Windows.Forms.TextBox();
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
-            this.list = new Google.Solutions.IapDesktop.Application.Controls.ProjectsListView();
-            this.nameColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.idColumnHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.list = new BindableListView<TModelItem>();
             this.SuspendLayout();
             // 
             // progressBar
@@ -61,12 +58,6 @@
             this.searchTextBox.TabIndex = 0;
             this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyDown);
             // 
-            // imageList
-            // 
-            this.imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList.ImageStream")));
-            this.imageList.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList.Images.SetKeyName(0, "Project_16.png");
-            // 
             // list
             // 
             this.list.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -74,40 +65,24 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.list.AutoResizeColumnsOnUpdate = false;
             this.list.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.list.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.nameColumnHeader,
-            this.idColumnHeader});
             this.list.FullRowSelect = true;
             this.list.HideSelection = false;
             this.list.Location = new System.Drawing.Point(0, 25);
             this.list.Name = "list";
             this.list.OwnerDraw = true;
-            this.list.SelectedModelItem = null;
             this.list.Size = new System.Drawing.Size(250, 175);
-            this.list.SmallImageList = this.imageList;
             this.list.TabIndex = 1;
             this.list.UseCompatibleStateImageBehavior = false;
             this.list.View = System.Windows.Forms.View.Details;
-            this.list.Layout += new System.Windows.Forms.LayoutEventHandler(this.list_Layout);
             // 
-            // nameColumnHeader
-            // 
-            this.nameColumnHeader.Text = "Name";
-            this.nameColumnHeader.Width = 100;
-            // 
-            // idColumnHeader
-            // 
-            this.idColumnHeader.Text = "ID";
-            this.idColumnHeader.Width = 144;
-            // 
-            // ProjectList
+            // SearchableList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.searchTextBox);
             this.Controls.Add(this.list);
             this.Controls.Add(this.progressBar);
-            this.Name = "ProjectList";
+            this.Name = "SearchableList";
             this.Size = new System.Drawing.Size(250, 200);
             this.Load += new System.EventHandler(this.ProjectList_Load);
             this.ResumeLayout(false);
@@ -118,10 +93,7 @@
         #endregion
 
         private System.Windows.Forms.ProgressBar progressBar;
-        private ProjectsListView list;
-        private System.Windows.Forms.ColumnHeader nameColumnHeader;
-        private System.Windows.Forms.ColumnHeader idColumnHeader;
+        private BindableListView<TModelItem> list;
         private System.Windows.Forms.TextBox searchTextBox;
-        private System.Windows.Forms.ImageList imageList;
     }
 }

@@ -22,8 +22,6 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Collections.ObjectModel;
-using Google.Apis.Compute.v1.Data;
 using Google.Solutions.IapDesktop.Application.Properties;
 using Google.Solutions.IapDesktop.Application.Services.Windows;
 using Google.Solutions.Common.Diagnostics;
@@ -31,7 +29,7 @@ using Google.Solutions.Common.Diagnostics;
 namespace Google.Solutions.IapDesktop.Application.Controls
 {
     [SkipCodeCoverage("Pure UI code")]
-    public partial class ProjectList : UserControl
+    public partial class SearchableList<TModelItem> : UserControl
     {
         public event EventHandler LoadingChanged;
         public event EventHandler SearchTermChanged;
@@ -42,10 +40,9 @@ namespace Google.Solutions.IapDesktop.Application.Controls
             set => this.searchTextBox.Text = value;
         }
 
-        public ProjectList()
+        public SearchableList()
         {
             InitializeComponent();
-
         }
 
         public bool Loading 
@@ -59,25 +56,16 @@ namespace Google.Solutions.IapDesktop.Application.Controls
             }
         }
 
-        public void BindItems(ObservableCollection<Project> model)
+        public BindableListView<TModelItem> List => this.list;
+
+        public void AddColumn(string text, int width)
         {
-            this.list.BindImageIndex(_ => 0);
-            this.list.BindColumn(0, m => m.Description);
-            this.list.BindColumn(1, m => m.Name);
-            this.list.BindCollection(model);
+            this.list.Columns.Add(text, width);
         }
 
         //---------------------------------------------------------------------
         // Window events.
         //---------------------------------------------------------------------
-
-        private void list_Layout(object sender, LayoutEventArgs e)
-        {
-            this.nameColumnHeader.Width = (int)(this.Width/2);
-            this.idColumnHeader.Width = this.Width - 
-                this.nameColumnHeader.Width - 
-                SystemInformation.VerticalScrollBarWidth;
-        }
 
         private void ProjectList_Load(object sender, EventArgs e)
         {
@@ -124,9 +112,5 @@ namespace Google.Solutions.IapDesktop.Application.Controls
         {
             this.SearchTermChanged?.Invoke(this, EventArgs.Empty);
         }
-    }
-
-    public class ProjectsListView : BindableListView<Project>
-    {
     }
 }
